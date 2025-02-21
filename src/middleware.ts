@@ -4,12 +4,18 @@ import type { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
   const token = request.cookies.get('accessToken')?.value;
   const isAuthPage = request.nextUrl.pathname.startsWith('/auth');
-  const isDashboardPage = request.nextUrl.pathname.startsWith('/dashboard');
+  const isProtectedRoute = 
+    request.nextUrl.pathname.startsWith('/dashboard') ||
+    request.nextUrl.pathname.startsWith('/rides') ||
+    request.nextUrl.pathname.startsWith('/book') ||
+    request.nextUrl.pathname.startsWith('/profile');
 
-  if (isDashboardPage && !token) {
+  // Redirect to login if accessing protected route without token
+  if (isProtectedRoute && !token) {
     return NextResponse.redirect(new URL('/auth/login', request.url));
   }
 
+  // Redirect to dashboard if accessing auth pages while logged in
   if (isAuthPage && token) {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
@@ -18,5 +24,11 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/auth/:path*'],
+  matcher: [
+    '/dashboard/:path*',
+    '/auth/:path*',
+    '/rides/:path*',
+    '/book/:path*',
+    '/profile/:path*'
+  ],
 }; 

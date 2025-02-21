@@ -1,18 +1,17 @@
 import { AuthResponse, LoginCredentials } from '@/types/auth';
+import { API_URL } from '@/lib/constants/config';
 import Cookies from 'js-cookie';
-
-const API_URL = 'https://dummyjson.com';
 
 export const authService = {
   login: async (credentials: LoginCredentials) => {
     try {
+      if (!API_URL) throw new Error('API URL not configured');
+
       const response = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...credentials,
-        //   username: 'emilys',
-        //   password: 'emilyspass',
           expiresInMins: 60,
         }),
       });
@@ -35,6 +34,8 @@ export const authService = {
 
   getCurrentUser: async (token: string) => {
     try {
+      if (!API_URL) throw new Error('API URL not configured');
+
       const response = await fetch(`${API_URL}/auth/me`, {
         headers: {
           'Authorization': `Bearer ${token}`,
