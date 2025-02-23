@@ -1,10 +1,11 @@
 export interface RideStats {
   totalRides: number;
   completedRides: number;
-  cancelledRides: number;
+  cancelledRides?: number;
   totalSpent: number;
-  averageRating: number;
-  favoriteDestinations: string[];
+  rating: number;
+  averageRating?: number;
+  favoriteDestinations?: string[];
 }
 
 export interface ProfileData {

@@ -1,109 +1,149 @@
-import { RideHistory } from '@/types/ride';
-import { ProfileData, RideStats } from '@/types/profile';
+import { RideDetails, RideStatus, Driver, RideStats, RideHistory } from '@/types/ride';
+import { ProfileData } from '@/types/profile';
 import { RidePool } from '@/types/ride-sharing';
 
-export const DUMMY_RIDES: RideHistory[] = [
+// Function to create a style for initials
+export const getInitials = (name: string) => {
+  return name.split(' ').map(word => word.charAt(0).toUpperCase()).join('');
+};
+
+// Drivers data with initials as profile pictures
+export const DUMMY_DRIVERS: Driver[] = [
   {
-    id: '1',
-    date: '2024-03-15T10:30:00Z',
-    pickup: 'Downtown Station',
-    destination: 'Airport Terminal 1',
-    status: 'completed',
-    fare: 35.50,
-    driver: {
-      name: 'John Smith',
-      image: 'https://ui-avatars.com/api/?name=John+Smith',
-      rating: 4.8
-    },
-    distance: '15.2 km',
-    duration: '25 mins'
+    id: 'driver_1',
+    name: 'John Smith',
+    image: getInitials('John Smith'), // Use initials
+    rating: 4.8
   },
   {
-    id: '2',
-    date: '2024-03-14T15:45:00Z',
-    pickup: 'Shopping Mall',
-    destination: 'Central Park',
-    status: 'completed',
-    fare: 22.75,
-    driver: {
-      name: 'Sarah Johnson',
-      image: 'https://ui-avatars.com/api/?name=Sarah+Johnson',
-      rating: 4.9
-    },
-    distance: '8.7 km',
-    duration: '15 mins'
+    id: 'driver_2',
+    name: 'Sarah Johnson',
+    image: getInitials('Sarah Johnson'), // Use initials
+    rating: 4.9
   },
   {
-    id: '3',
-    date: '2024-03-16T08:20:00Z',
-    pickup: 'Gym Center',
-    destination: 'Office Complex',
-    status: 'ongoing',
-    fare: 18.90,
-    driver: {
-      name: 'Mike Brown',
-      image: 'https://ui-avatars.com/api/?name=Mike+Brown',
-      rating: 4.7
-    },
-    distance: '6.3 km',
-    duration: '12 mins'
+    id: 'driver_3',
+    name: 'Mike Brown',
+    image: getInitials('Mike Brown'), // Use initials
+    rating: 4.7
   },
   {
-    id: '4',
-    date: '2024-03-13T19:15:00Z',
-    pickup: 'Restaurant Row',
-    destination: 'Residential Area',
-    status: 'cancelled',
-    fare: 0,
-    driver: {
-      name: 'Emma Wilson',
-      image: 'https://ui-avatars.com/api/?name=Emma+Wilson',
-      rating: 4.6
-    },
-    distance: '12.1 km',
-    duration: '20 mins'
+    id: 'driver_4',
+    name: 'Emma Wilson',
+    image: getInitials('Emma Wilson'), // Use initials
+    rating: 4.6
   },
   {
-    id: '5',
-    date: '2024-03-12T11:30:00Z',
-    pickup: 'University Campus',
-    destination: 'Public Library',
-    status: 'completed',
-    fare: 15.25,
-    driver: {
-      name: 'David Lee',
-      image: 'https://ui-avatars.com/api/?name=David+Lee',
-      rating: 4.9
-    },
-    distance: '5.8 km',
-    duration: '10 mins'
-  },
-  {
-    id: '6',
-    date: '2024-03-11T14:20:00Z',
-    pickup: 'Beach Front',
-    destination: 'Hotel Zone',
-    status: 'completed',
-    fare: 28.90,
-    driver: {
-      name: 'Lisa Chen',
-      image: 'https://ui-avatars.com/api/?name=Lisa+Chen',
-      rating: 4.8
-    },
-    distance: '13.5 km',
-    duration: '22 mins'
+    id: 'driver_5',
+    name: 'David Lee',
+    image: getInitials('David Lee'), // Use initials
+    rating: 4.9
   }
 ];
 
+// Ride history data with specific place names
+export const DUMMY_RIDES: RideHistory[] = [
+  {
+    id: '1',
+    driver: {
+      id: 'driver1',
+      name: 'John Doe',
+      image: getInitials('John Doe'), // Use initials
+      rating: 4.5,
+    },
+    fare: 20.0,
+    pickup: 'Central Park',
+    destination: 'Times Square',
+    date: '2023-10-01T10:00:00Z',
+    distance: '10 miles',
+    duration: '30 mins',
+    status: 'completed',
+    type: 'solo_ride',
+    startTime: '2023-10-01T10:00:00Z',
+  },
+  {
+    id: '2',
+    driver: {
+      id: 'driver2',
+      name: 'Sarah Connor',
+      image: getInitials('Sarah Connor'), // Use initials
+      rating: 4.7,
+    },
+    fare: 25.0,
+    pickup: 'Brooklyn Bridge',
+    destination: 'Statue of Liberty',
+    date: '2023-10-02T11:00:00Z',
+    distance: '15 miles',
+    duration: '40 mins',
+    status: 'completed',
+    type: 'pool',
+    startTime: '2023-10-02T11:00:00Z',
+  },
+  {
+    id: '3',
+    driver: {
+      id: 'driver3',
+      name: 'Mike Johnson',
+      image: getInitials('Mike Johnson'), // Use initials
+      rating: 4.6,
+    },
+    fare: 30.0,
+    pickup: 'Empire State Building',
+    destination: 'Fifth Avenue',
+    date: '2023-10-03T12:00:00Z',
+    distance: '20 miles',
+    duration: '50 mins',
+    status: 'completed',
+    type: 'solo_ride',
+    startTime: '2023-10-03T12:00:00Z',
+  },
+  {
+    id: '4',
+    driver: {
+      id: 'driver4',
+      name: 'Emma Watson',
+      image: getInitials('Emma Watson'), // Use initials
+      rating: 4.8,
+    },
+    fare: 15.0,
+    pickup: 'Wall Street',
+    destination: 'One World Trade Center',
+    date: '2023-10-04T13:00:00Z',
+    distance: '8 miles',
+    duration: '20 mins',
+    status: 'cancelled',
+    type: 'pool',
+    startTime: '2023-10-04T13:00:00Z',
+  },
+  {
+    id: '5',
+    driver: {
+      id: 'driver5',
+      name: 'David Beckham',
+      image: getInitials('David Beckham'), // Use initials
+      rating: 4.9,
+    },
+    fare: 18.0,
+    pickup: 'Chinatown',
+    destination: 'Little Italy',
+    date: '2023-10-05T14:00:00Z',
+    distance: '12 miles',
+    duration: '35 mins',
+    status: 'completed',
+    type: 'solo_ride',
+    startTime: '2023-10-05T14:00:00Z',
+  },
+];
+
+// Profile statistics
 export const DUMMY_PROFILE_STATS: RideStats = {
   totalRides: 42,
   completedRides: 38,
-  cancelledRides: 4,
   totalSpent: 846.50,
-  averageRating: 4.8,
-  favoriteDestinations: ['Airport', 'Downtown', 'Shopping Mall']
+  rating: 4.8
 };
 
+// User profile data
 export const DUMMY_PROFILE: ProfileData = {
   firstName: 'John',
   lastName: 'Doe',
@@ -113,9 +153,10 @@ export const DUMMY_PROFILE: ProfileData = {
   profileImage: 'https://ui-avatars.com/api/?name=John+Doe'
 };
 
+// Ride pools data
 export const DUMMY_RIDE_POOLS: RidePool[] = [
   {
-    id: 'pool1',
+    id: 'pool_1',
     startLocation: 'Downtown Station',
     endLocation: 'Airport Terminal 1',
     departureTime: '2024-03-20T08:00:00Z',
@@ -123,7 +164,7 @@ export const DUMMY_RIDE_POOLS: RidePool[] = [
     pricePerSeat: 15.00,
     participants: [
       {
-        id: 'user1',
+        id: 'user_1',
         name: 'Alice Johnson',
         image: 'https://ui-avatars.com/api/?name=Alice+Johnson',
         rating: 4.9,
@@ -145,7 +186,7 @@ export const DUMMY_RIDE_POOLS: RidePool[] = [
     status: 'open'
   },
   {
-    id: 'pool2', 
+    id: 'pool_2',
     startLocation: 'Shopping Mall',
     endLocation: 'University Campus',
     departureTime: '2024-03-20T09:30:00Z',
@@ -153,7 +194,7 @@ export const DUMMY_RIDE_POOLS: RidePool[] = [
     pricePerSeat: 12.50,
     participants: [
       {
-        id: 'user2',
+        id: 'user_2',
         name: 'Mike Smith',
         image: 'https://ui-avatars.com/api/?name=Mike+Smith',
         rating: 4.7,
@@ -170,7 +211,7 @@ export const DUMMY_RIDE_POOLS: RidePool[] = [
     status: 'open'
   },
   {
-    id: 'pool3',
+    id: 'pool_3',
     startLocation: 'Central Park',
     endLocation: 'Beach Resort',
     departureTime: '2024-03-20T10:00:00Z',
@@ -178,29 +219,14 @@ export const DUMMY_RIDE_POOLS: RidePool[] = [
     pricePerSeat: 20.00,
     participants: [
       {
-        id: 'user3',
+        id: 'user_3',
         name: 'Sarah Wilson',
         image: 'https://ui-avatars.com/api/?name=Sarah+Wilson',
         rating: 4.8,
         isVerified: true,
         pickupPoint: 'Central Park',
         dropoffPoint: 'Beach Resort',
-        joinedAt: '2024-03-19T12:30:00Z',
-        emergencyContact: {
-          name: 'James Wilson',
-          phone: '+1 234-567-8902',
-          relationship: 'Brother'
-        }
-      },
-      {
-        id: 'user4',
-        name: 'Tom Brown',
-        image: 'https://ui-avatars.com/api/?name=Tom+Brown',
-        rating: 4.6,
-        isVerified: false,
-        pickupPoint: 'Central Park',
-        dropoffPoint: 'Beach Resort',
-        joinedAt: '2024-03-19T14:15:00Z'
+        joinedAt: '2024-03-19T12:30:00Z'
       }
     ],
     route: {
@@ -208,35 +234,5 @@ export const DUMMY_RIDE_POOLS: RidePool[] = [
       duration: '35 mins'
     },
     status: 'full'
-  },
-  {
-    id: 'pool4',
-    startLocation: 'Sports Complex',
-    endLocation: 'Concert Hall',
-    departureTime: '2024-03-20T18:30:00Z',
-    availableSeats: 1,
-    pricePerSeat: 18.00,
-    participants: [
-      {
-        id: 'user5',
-        name: 'Emma Davis',
-        image: 'https://ui-avatars.com/api/?name=Emma+Davis',
-        rating: 5.0,
-        isVerified: true,
-        pickupPoint: 'Sports Complex',
-        dropoffPoint: 'Concert Hall',
-        joinedAt: '2024-03-19T20:00:00Z',
-        emergencyContact: {
-          name: 'John Davis',
-          phone: '+1 234-567-8903',
-          relationship: 'Father'
-        }
-      }
-    ],
-    route: {
-      distance: '12.8 km',
-      duration: '20 mins'
-    },
-    status: 'open'
   }
 ];

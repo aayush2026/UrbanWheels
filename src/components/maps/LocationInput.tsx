@@ -9,6 +9,8 @@ interface LocationInputProps {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
+  error?: string;
+  onKeyDown?: (e: React.KeyboardEvent) => void;
 }
 
 export default function LocationInput({
@@ -16,7 +18,9 @@ export default function LocationInput({
   label,
   value,
   onChange,
-  placeholder
+  placeholder,
+  error,
+  onKeyDown
 }: LocationInputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -39,7 +43,7 @@ export default function LocationInput({
 
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-medium text-gray-700">
+      <label htmlFor={id} className="block text-md font-medium text-gray-700">
         {label}
       </label>
       <input
@@ -48,8 +52,13 @@ export default function LocationInput({
         id={id}
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        onKeyDown={onKeyDown}
         placeholder={placeholder}
-        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+        className={`mt-1 block w-full p-2 rounded-sm shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
+          error 
+            ? 'border-red-300 text-red-900 placeholder-red-300'
+            : 'border-gray-300'
+        }`}
       />
     </div>
   );

@@ -1,38 +1,47 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from '@/context/AuthContext';
-import Header from '@/components/layout/Header';
+import { PaymentProvider } from '@/context/PaymentContext';
+import { RideProvider } from '@/context/RideContext';
+import SidebarLayout from '@/components/layout/Sidebar';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Urban Wheels",
   description: "Urban Wheels is a ride-sharing platform that allows you to find and book rides in your area.",
+  icons: {
+    icon: '/urban-wheels-logo.ico', // file in public directory
+  }
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={inter.className}>
         <AuthProvider>
-          <Header />
-          <main>
-            {children}
-          </main>
+          <RideProvider>
+            <PaymentProvider>
+              <SidebarLayout>
+                {children}
+              </SidebarLayout>
+            </PaymentProvider>
+          </RideProvider>
         </AuthProvider>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          closeOnClick
+          pauseOnHover
+        />
       </body>
     </html>
   );

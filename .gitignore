@@ -46,3 +46,5 @@ next-env.d.ts
 
 # Environment variables
 .env*.local
+
+tmp/

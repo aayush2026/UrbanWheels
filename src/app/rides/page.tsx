@@ -2,9 +2,10 @@
 
 import { useAuth } from '@/context/AuthContext';
 import { useEffect, useState } from 'react';
-import LoadingSpinner from '@/components/shared/LoadingSpinner';
+import { ClipLoader } from 'react-spinners';
 import { RideHistory, RideStatus } from '@/types/ride';
 import { DUMMY_RIDES } from '@/lib/data/dummy';
+import { getInitials } from '@/lib/data/dummy';
 
 const ITEMS_PER_PAGE = 5;
 
@@ -38,8 +39,8 @@ export default function RidesPage() {
     currentPage * ITEMS_PER_PAGE
   );
 
-  if (isLoading || loading) {
-    return <LoadingSpinner />;
+  if (isLoading) {
+    return <ClipLoader size={50} color="#4F46E5" />;
   }
 
   return (
@@ -76,11 +77,12 @@ export default function RidesPage() {
                 <div className="px-4 py-4 sm:px-6">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
-                      <img
-                        className="h-10 w-10 rounded-full"
-                        src={ride.driver.image}
-                        alt={ride.driver.name}
-                      />
+                      <div
+                        className="h-10 w-10 rounded-full flex items-center justify-center bg-gray-300 text-white font-bold"
+                        style={{ fontSize: '1.25rem' }}
+                      >
+                        {getInitials(ride.driver.name)}
+                      </div>
                       <div className="ml-4">
                         <p className="text-sm font-medium text-gray-900">
                           {ride.driver.name}

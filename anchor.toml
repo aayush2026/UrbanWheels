@@ -1,0 +1,9 @@
+[lcl-host]
+realm-apid = 'localhost'
+
+[org]
+apid = process.env.APIID
+[service]
+apid = 'urban-wheels'
+category = 'javascript'
+cert-style = 'acme'
