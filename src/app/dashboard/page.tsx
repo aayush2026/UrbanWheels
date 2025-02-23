@@ -50,7 +50,7 @@ export default function DashboardPage() {
             <CardTitle className="text-sm font-medium">Money Spent</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${stats.totalSpent.toFixed(2)}</div>
+            <div className="text-2xl font-bold">₹{stats.totalSpent.toFixed(2)}</div>
             <p className="text-xs text-muted-foreground">Last 30 days</p>
           </CardContent>
         </Card>

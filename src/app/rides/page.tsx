@@ -107,7 +107,7 @@ export default function RidesPage() {
                       >
                         {ride.status.charAt(0).toUpperCase() + ride.status.slice(1)}
                       </span>
-                      <p className="mt-1 text-sm text-gray-900">${ride.fare.toFixed(2)}</p>
+                      <p className="mt-1 text-sm text-gray-900">₹{ride.fare.toFixed(2)}</p>
                     </div>
                   </div>
                   <div className="mt-4">

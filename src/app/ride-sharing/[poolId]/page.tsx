@@ -10,6 +10,7 @@ import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 import { useRide } from '@/context/RideContext';
 import { notify } from '@/lib/utils/notifications';
 import { use } from 'react';
+import Chat from '@/components/chat/Chat';
 
 export default function RidePoolDetailsPage({ params }: { params: Promise<{ poolId: string }> }) {
   const resolvedParams = use(params);
@@ -142,12 +143,13 @@ export default function RidePoolDetailsPage({ params }: { params: Promise<{ pool
                   type="button"
                   className="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                  Join Pool - ${pool.pricePerSeat.toFixed(2)}
+                  Join Pool - ₹{pool.pricePerSeat.toFixed(2)}
                 </button>
               </div>
             )}
           </div>
         </div>
+        <Chat poolId={resolvedParams.poolId} />
       </div>
     </div>
   );

@@ -47,7 +47,7 @@ export default function QuickActions() {
               Book a private ride just for yourself. Enjoy comfort and convenience at standard rates.
             </p>
             <div className="flex items-center text-sm text-gray-500">
-              <span className="font-medium text-indigo-600">Starting from $10</span>
+              <span className="font-medium text-indigo-600">Starting from ₹100</span>
             </div>
             <div className="inline-flex items-center justify-center w-full px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
               Book Solo Ride

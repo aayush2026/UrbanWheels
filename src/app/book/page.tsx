@@ -13,6 +13,7 @@ import RidePoolCard from '@/components/ride-sharing/RidePoolCard';
 import { RidePool } from '@/types/ride-sharing';
 import { useRide } from '@/context/RideContext';
 import { notify } from '@/lib/utils/notifications';
+import { MapPin } from 'lucide-react';
 
 interface FormErrors {
   pickup?: string;
@@ -110,7 +111,6 @@ export default function BookRidePage() {
 
     setSubmitting(true);
     try {
-      // Book the ride instead of proceeding to payment
       bookRide({
         pickup: formData.pickup,
         destination: formData.destination,
@@ -187,7 +187,7 @@ export default function BookRidePage() {
           </span>
         </div>
 
-        <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
+        <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
           <div>
             <p className="text-gray-500">Distance</p>
             <p className="font-medium text-gray-900">{selectedPool.route.distance}</p>
@@ -198,7 +198,7 @@ export default function BookRidePage() {
           </div>
           <div>
             <p className="text-gray-500">Price per seat</p>
-            <p className="font-medium text-green-600">${selectedPool.pricePerSeat.toFixed(2)}</p>
+            <p className="font-medium text-green-600">₹{selectedPool.pricePerSeat.toFixed(2)}</p>
           </div>
         </div>
 
@@ -280,10 +280,13 @@ export default function BookRidePage() {
             >
               <div className="p-4">
                 <div className="flex justify-between items-start">
-                  <div>
-                    <h4 className="text-lg font-medium text-gray-900">
-                      {pool.startLocation} → {pool.endLocation}
-                    </h4>
+                  <div className='flex flex-col items-start gap-1 pb-1'>
+                    <div className='flex flex-row items-center gap-1'>
+                      <MapPin className='w-6 h-6' />
+                      <h4 className="text-lg font-medium text-gray-900">
+                        {pool.startLocation} → {pool.endLocation}
+                      </h4>
+                    </div>
                     <p className="text-sm text-gray-500 mt-1">
                       Departure: {new Date(pool.departureTime).toLocaleString()}
                     </p>
@@ -293,8 +296,8 @@ export default function BookRidePage() {
                   </span>
                 </div>
 
-                <div className="mt-4 border-t border-gray-100 pt-4">
-                  <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="mt-2 border-t border-gray-100 pt-1">
+                  <div className="grid grid-cols-2 gap-2 text-sm">
                     <div>
                       <p className="text-gray-500">Distance</p>
                       <p className="font-medium text-gray-900">{pool.route.distance}</p>
@@ -306,7 +309,7 @@ export default function BookRidePage() {
                   </div>
                 </div>
 
-                <div className="mt-4 border-t border-gray-100 pt-4">
+                <div className="mt-2 border-t border-gray-100 pt-1">
                   <p className="text-sm font-medium text-gray-900 mb-2">Current Participants:</p>
                   <div className="flex -space-x-2 overflow-hidden">
                     {pool.participants.map(participant => (
@@ -321,9 +324,9 @@ export default function BookRidePage() {
                   </div>
                 </div>
 
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-2 flex items-center justify-between">
                   <div className="text-green-600 font-medium">
-                    ${pool.pricePerSeat.toFixed(2)} per person
+                    ₹{pool.pricePerSeat.toFixed(2)} per person
                   </div>
                   <button
                     onClick={() => router.push(`/payment/checkout?poolId=${pool.id}`)}
@@ -443,7 +446,7 @@ export default function BookRidePage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-lg font-medium text-gray-800">
                   Select Ride Type
                 </label>
                 <div className="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -488,7 +491,7 @@ export default function BookRidePage() {
                         <p>Distance: {routeInfo.distance}</p>
                         <p>Duration: {routeInfo.duration}</p>
                         <p className="text-lg font-semibold mt-2">
-                          Estimated Fare: ${routeInfo.fare.toFixed(2)}
+                          Estimated Fare: ₹{routeInfo.fare.toFixed(2)}
                         </p>
                       </div>
                     </div>

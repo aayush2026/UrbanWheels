@@ -59,7 +59,7 @@ export default function AvailableRidePools({ pools }: AvailableRidePoolsProps) {
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-medium text-gray-900">
-                        ${pool.pricePerSeat.toFixed(2)} per person
+                        ₹{pool.pricePerSeat.toFixed(2)} per person
                       </span>
                       <Link
                         href={`/ride-sharing/${pool.id}`}

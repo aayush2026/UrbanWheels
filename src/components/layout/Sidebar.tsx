@@ -48,7 +48,7 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
               {user ? (
                 <>
                   <SidebarMenuItem>
-                    <h2 className=" text-2xl font-medium text-gray-900 p-4">
+                    <h2 className=" text-2xl font-medium text-gray-900 p-2">
                         Welcome back,
                         <br /> 
                         <span className="text-4xl font-bold">
@@ -56,7 +56,7 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
                         </span>
                     </h2>     
                   </SidebarMenuItem>
-                  <Link href="/dashboard" className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100">
+                  <Link href="/dashboard" className="flex items-center gap-2 rounded-lg hover:bg-gray-100">
                     <SidebarMenuItem>
                         <SidebarMenuButton asChild>
                             <LayoutDashboard className="h-4 w-4" />
@@ -64,7 +64,7 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                   </Link>
-                <Link href="/book?type=solo" className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100">
+                <Link href="/book?type=solo" className="flex items-center gap-2 rounded-lg hover:bg-gray-100">
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
                         <Car className="h-4 w-4" />
@@ -72,7 +72,7 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </Link>
-                < Link href="/rides" className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100">
+                < Link href="/rides" className="flex items-center gap-2 rounded-lg hover:bg-gray-100">
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
                         <History className="h-4 w-4" />
@@ -80,7 +80,7 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </Link>
-                <Link href="/payment/history" className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100">
+                <Link href="/payment/history" className="flex items-center gap-2 rounded-lg hover:bg-gray-100">
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
                         <CreditCard className="h-4 w-4" />

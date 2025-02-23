@@ -111,7 +111,7 @@ export default function OngoingRideCard() {
           </div>
           <div>
             <p className="text-sm text-gray-500">Fare</p>
-            <p className="text-sm font-medium text-gray-900">${currentRide.fare.toFixed(2)}</p>
+            <p className="text-sm font-medium text-gray-900">₹{currentRide.fare.toFixed(2)}</p>
           </div>
           <div>
             <p className="text-sm text-gray-500">Type</p>

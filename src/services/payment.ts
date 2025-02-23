@@ -5,7 +5,7 @@ export const paymentService = {
     const response = await fetch('/api/create-payment-intent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ amount, poolId }),
+      body: JSON.stringify({ amount: amount < 50 ? 50 : amount, poolId }),
     });
 
     if (!response.ok) {

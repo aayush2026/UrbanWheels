@@ -51,7 +51,7 @@ export const DUMMY_RIDES: RideHistory[] = [
       image: getInitials('John Doe'), // Use initials
       rating: 4.5,
     },
-    fare: 20.0,
+    fare: 2000.0,
     pickup: 'Central Park',
     destination: 'Times Square',
     date: '2023-10-01T10:00:00Z',
@@ -69,7 +69,7 @@ export const DUMMY_RIDES: RideHistory[] = [
       image: getInitials('Sarah Connor'), // Use initials
       rating: 4.7,
     },
-    fare: 25.0,
+    fare: 2500.0,
     pickup: 'Brooklyn Bridge',
     destination: 'Statue of Liberty',
     date: '2023-10-02T11:00:00Z',
@@ -87,7 +87,7 @@ export const DUMMY_RIDES: RideHistory[] = [
       image: getInitials('Mike Johnson'), // Use initials
       rating: 4.6,
     },
-    fare: 30.0,
+    fare: 3000.0,
     pickup: 'Empire State Building',
     destination: 'Fifth Avenue',
     date: '2023-10-03T12:00:00Z',
@@ -105,7 +105,7 @@ export const DUMMY_RIDES: RideHistory[] = [
       image: getInitials('Emma Watson'), // Use initials
       rating: 4.8,
     },
-    fare: 15.0,
+    fare: 1500.0,
     pickup: 'Wall Street',
     destination: 'One World Trade Center',
     date: '2023-10-04T13:00:00Z',
@@ -123,7 +123,7 @@ export const DUMMY_RIDES: RideHistory[] = [
       image: getInitials('David Beckham'), // Use initials
       rating: 4.9,
     },
-    fare: 18.0,
+    fare: 1800.0,
     pickup: 'Chinatown',
     destination: 'Little Italy',
     date: '2023-10-05T14:00:00Z',
@@ -161,7 +161,7 @@ export const DUMMY_RIDE_POOLS: RidePool[] = [
     endLocation: 'Airport Terminal 1',
     departureTime: '2024-03-20T08:00:00Z',
     availableSeats: 3,
-    pricePerSeat: 15.00,
+    pricePerSeat: 100.00,
     participants: [
       {
         id: 'user_1',
@@ -191,7 +191,7 @@ export const DUMMY_RIDE_POOLS: RidePool[] = [
     endLocation: 'University Campus',
     departureTime: '2024-03-20T09:30:00Z',
     availableSeats: 2,
-    pricePerSeat: 12.50,
+    pricePerSeat: 75.00,
     participants: [
       {
         id: 'user_2',
@@ -216,7 +216,7 @@ export const DUMMY_RIDE_POOLS: RidePool[] = [
     endLocation: 'Beach Resort',
     departureTime: '2024-03-20T10:00:00Z',
     availableSeats: 0,
-    pricePerSeat: 20.00,
+    pricePerSeat: 120.00,
     participants: [
       {
         id: 'user_3',

@@ -11,8 +11,8 @@ export async function POST(req: Request) {
   try {
     const { amount, poolId } = await req.json();
 
-    // Validate amount (minimum 50 cents in USD)
-    if (!amount || amount < 0.5) {
+    // Validate amount (minimum 50 cents in INR)
+    if (!amount || amount < 50) {
       return NextResponse.json(
         { error: 'Invalid payment amount' },
         { status: 400 }
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
 
     const paymentIntent = await stripe.paymentIntents.create({
       amount: amountInCents,
-      currency: 'usd',
+      currency: 'inr',
       metadata: {
         poolId: poolId || 'solo_ride',
       },

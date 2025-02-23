@@ -20,8 +20,8 @@ export default function CheckoutPage() {
   useEffect(() => {
     const fetchPaymentIntent = async () => {
       try {
-        if (!pendingPayment.amount) {
-          throw new Error('No payment amount specified');
+        if (!pendingPayment.amount || pendingPayment.amount < 50) {
+          throw new Error('No payment amount specified or less than 50 INR');
         }
 
         const response = await fetch('/api/create-payment-intent', {
