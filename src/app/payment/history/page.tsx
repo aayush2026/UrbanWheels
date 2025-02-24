@@ -3,37 +3,23 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { usePayment } from '@/context/PaymentContext';
-import { PaymentHistoryRecord } from '@/types/payment';
 import LoadingSpinner from '@/components/shared/LoadingSpinner';
 import PaymentHistoryList from '@/components/payment/PaymentHistoryList';
+import { PaymentHistoryRecord } from '@/types/payment';
 
 export default function PaymentHistoryPage() {
   const { user, isLoading: authLoading } = useAuth();
   const { getPaymentHistory } = usePayment();
   const [payments, setPayments] = useState<PaymentHistoryRecord[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const loadPayments = () => {
-      const storedPayments = getPaymentHistory();
-      const updatedPayments = storedPayments.map(payment => ({
-        ...payment,
-        rideDetails: payment.rideDetails || {
-          pickup: 'Not available',
-          destination: 'Not available'
-        },
-        paymentMethod: payment.paymentMethod || 'Card'
-      }));
-      setPayments(updatedPayments);
-      setIsLoading(false);
-    };
-
     if (!authLoading) {
-      loadPayments();
+      const storedPayments = getPaymentHistory();
+      setPayments(storedPayments);
     }
   }, [authLoading, getPaymentHistory]);
 
-  if (authLoading || isLoading) {
+  if (authLoading) {
     return <LoadingSpinner />;
   }
 

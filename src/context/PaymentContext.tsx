@@ -11,36 +11,42 @@ interface PaymentContextType {
   pendingPayment: {
     amount: number;
     rideDetails: RideDetails | null;
+    rideType?: string;
   };
-  setPendingPayment: (amount: number, details: RideDetails) => void;
+  setPendingPayment: (amount: number, details: RideDetails, rideType?: string) => void;
   clearPendingPayment: () => void;
 }
 
 const PaymentContext = createContext<PaymentContextType | undefined>(undefined);
 
 export function PaymentProvider({ children }: { children: ReactNode }) {
-  const [paymentHistory, setPaymentHistory] = useState<PaymentHistoryRecord[]>([]);
   const [pendingPayment, setPendingPaymentState] = useState<{
     amount: number;
     rideDetails: RideDetails | null;
-  }>({ amount: 0, rideDetails: null });
+    rideType?: string;
+  }>({ amount: 0, rideDetails: null, rideType: undefined });
 
-  const setPendingPayment = (amount: number, details: RideDetails) => {
-    setPendingPaymentState({ amount, rideDetails: details });
+  const setPendingPayment = (amount: number, details: RideDetails, rideType?: string) => {
+    setPendingPaymentState({ amount, rideDetails: details, rideType });
   };
 
   const addPaymentToHistory = (payment: PaymentHistoryRecord) => {
-    setPaymentHistory(prev => [payment, ...prev]);
+    const existingPayments = getPaymentHistory();
+    const updatedPayments = [payment, ...existingPayments];
+    localStorage.setItem('paymentHistory', JSON.stringify(updatedPayments));
   };
 
   const clearPaymentHistory = () => {
-    setPaymentHistory([]);
+    localStorage.removeItem('paymentHistory');
   };
 
-  const getPaymentHistory = () => paymentHistory;
+  const getPaymentHistory = () => {
+    const storedPayments = localStorage.getItem('paymentHistory');
+    return storedPayments ? JSON.parse(storedPayments) : [];
+  };
 
   const clearPendingPayment = () => {
-    setPendingPaymentState({ amount: 0, rideDetails: null });
+    setPendingPaymentState({ amount: 0, rideDetails: null, rideType: undefined });
   };
 
   return (

@@ -15,7 +15,7 @@ function PaymentSuccessContent() {
   const [paymentIntent, setPaymentIntent] = useState<PaymentData | null>(null);
   const searchParams = useSearchParams();
   const stripe = useStripe();
-  const { addPaymentToHistory } = usePayment();
+  const { addPaymentToHistory, getPaymentHistory } = usePayment();
   const router = useRouter();
   const processedRef = useRef(false);
 
@@ -63,16 +63,15 @@ function PaymentSuccessContent() {
             paymentMethod: 'Card'
           };
 
-          if (mounted) {
-            console.log('Creating payment record:', paymentRecord);
-            addPaymentToHistory(paymentRecord);
-            setPaymentIntent(paymentIntent as unknown as PaymentData);
-            setStatus('success');
-            processedRef.current = true;
-            setTimeout(() => {
-              sessionStorage.removeItem('pendingPayment');
-            }, 1000);
-          }
+          console.log('Before adding new payment:', getPaymentHistory()); // Log existing payments
+          addPaymentToHistory(paymentRecord); // Add new payment
+          console.log('After adding new payment:', getPaymentHistory()); // Log updated payments
+          setPaymentIntent(paymentIntent as unknown as PaymentData);
+          setStatus('success');
+          processedRef.current = true;
+          setTimeout(() => {
+            sessionStorage.removeItem('pendingPayment');
+          }, 1000);
         } else {
           if (mounted) {
             console.error('Payment not succeeded or missing ride details');
@@ -90,7 +89,7 @@ function PaymentSuccessContent() {
     return () => {
       mounted = false;
     };
-  }, [stripe, searchParams, addPaymentToHistory]);
+  }, [stripe, searchParams, addPaymentToHistory, getPaymentHistory]);
 
   if (status === 'loading') return <LoadingSpinner />;
   if (status === 'failed') return <FailureView />;
