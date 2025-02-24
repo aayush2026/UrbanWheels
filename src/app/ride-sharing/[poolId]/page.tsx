@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import { ClipLoader } from 'react-spinners';
 import { RidePool } from '@/types/ride-sharing';
 import { DUMMY_RIDE_POOLS } from '@/lib/data/dummy';
@@ -9,12 +9,14 @@ import { formatDateTime } from '@/lib/utils/dateTime';
 import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 import { useRide } from '@/context/RideContext';
 import { notify } from '@/lib/utils/notifications';
-import { use } from 'react';
 import Chat from '@/components/chat/Chat';
+import { useAuth } from '@/context/AuthContext';
 
-export default function RidePoolDetailsPage({ params }: { params: Promise<{ poolId: string }> }) {
-  const resolvedParams = use(params);
+export default function RidePoolDetailsPage() {
+  const resolvedParams = useParams();
   const { bookRide } = useRide();
+  const { user } = useAuth();
+  const userId = user ? user.id.toString() : '';
   const [pool, setPool] = useState<RidePool | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -59,7 +61,7 @@ export default function RidePoolDetailsPage({ params }: { params: Promise<{ pool
   return (
     <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
       <div className="px-4 sm:px-0">
-        <div className="bg-white shadow sm:rounded-lg">
+        <div className="bg-white shadow-lg shadow-gray-300 sm:rounded-lg">
           <div className="px-4 py-5 sm:p-6">
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
@@ -149,7 +151,7 @@ export default function RidePoolDetailsPage({ params }: { params: Promise<{ pool
             )}
           </div>
         </div>
-        <Chat poolId={resolvedParams.poolId} />
+        <Chat poolId={Array.isArray(resolvedParams.poolId) ? resolvedParams.poolId[0] : resolvedParams.poolId || ''} userId={userId} currentUsername={user ? user.username : 'Unknown User'} />
       </div>
     </div>
   );

@@ -34,13 +34,22 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
             <SidebarMenu>
                 <Link href="/" className="flex items-center gap-2 bg-[#111111] rounded-lg">
                   <Image 
-                    src="/images/urban-wheels.png" 
+                    src="/images/urban-wheels-transparent-w.png" 
                     alt="Urban Wheels Logo" 
-                    width={124} 
-                    height={24}
-                    className="object-cover object-center rounded-full"
+                    width={154} 
+                    height={32}
+                    className="object-cover object-center px-3 py-4"
                     />
                 </Link>
+                {/* <Link href="/" className="flex items-center gap-2 bg-[#ffffff] rounded-lg">
+                  <Image 
+                    src="/images/urban-wheels-transparent-b.png" 
+                    alt="Urban Wheels Logo" 
+                    width={154} 
+                    height={32}
+                    className="object-cover object-center px-3 py-4"
+                    />
+                </Link> */}
             </SidebarMenu>
           </SidebarHeader>
           <SidebarContent>

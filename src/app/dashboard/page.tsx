@@ -26,7 +26,7 @@ export default function DashboardPage() {
   // }, []);
 
   const renderStats = (stats: RideStats) => (
-      <div className="grid gap-4 md:grid-cols-4 mt-6">
+      <div className="grid gap-4 grid-cols-2 lg:grid-cols-4 mt-6">
         <Card className="transform transition-transform duration-300 hover:scale-105">
           <CardHeader>
             <CardTitle className="text-sm font-medium">Total Rides</CardTitle>

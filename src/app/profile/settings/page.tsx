@@ -6,6 +6,9 @@ import LoadingSpinner from '@/components/shared/LoadingSpinner';
 import ErrorMessage from '@/components/shared/ErrorMessage';
 import { ProfileData, RideStats } from '@/types/profile';
 import { DUMMY_PROFILE, DUMMY_PROFILE_STATS } from '@/lib/data/dummy';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Star } from 'lucide-react';
+
 
 export default function ProfileSettingsPage() {
   const { user, isLoading } = useAuth();
@@ -61,6 +64,52 @@ export default function ProfileSettingsPage() {
   if (isLoading) {
     return <LoadingSpinner />;
   }
+
+  const renderStats = (stats: RideStats) => (
+    <div className="grid gap-4 grid-cols-2 lg:grid-cols-4 mt-6">
+        <Card className="transform transition-transform duration-300 hover:scale-105">
+          <CardHeader>
+            <CardTitle className="text-sm font-medium">Total Rides</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{stats.totalRides}</div>
+            <p className="text-xs text-muted-foreground">{stats.totalRides} from last month</p>
+          </CardContent>
+        </Card>
+        <Card className="transform transition-transform duration-300 hover:scale-105">
+          <CardHeader>
+            <CardTitle className="text-sm font-medium">Completed Rides</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{stats.completedRides}</div>
+            <p className="text-xs text-muted-foreground">{stats.completedRides} from last month</p>
+          </CardContent>
+        </Card>
+        <Card className="transform transition-transform duration-300 hover:scale-105">
+          <CardHeader>
+            <CardTitle className="text-sm font-medium">Money Spent</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">₹{stats.totalSpent.toFixed(2)}</div>
+            <p className="text-xs text-muted-foreground">Last 30 days</p>
+          </CardContent>
+        </Card>
+        <Card className="transform transition-transform duration-300 hover:scale-105">
+          <CardHeader>
+            <CardTitle className="text-sm font-medium">Average Rating</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center gap-1">
+              <div className="text-2xl font-bold">{stats.rating.toFixed(1)}</div>
+              <Star className="h-4 w-4 fill-primary text-primary" />
+            </div>
+            <p className="text-xs text-muted-foreground">Based on 48 rides</p>
+          </CardContent>
+        </Card>
+    </div>
+  );
+
+
 
   return (
     <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
@@ -164,6 +213,10 @@ export default function ProfileSettingsPage() {
               </button>
             </div>
           </form>
+
+          <div className="mt-6">
+          {renderStats(stats)}
+          </div>
         </div>
       </div>
     </div>
