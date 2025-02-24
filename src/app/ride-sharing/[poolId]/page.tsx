@@ -49,7 +49,7 @@ export default function RidePoolDetailsPage() {
       notify.success('Successfully joined the ride pool!');
       router.push('/dashboard');
     } catch (error) {
-      notify.error('Failed to join the ride pool. Please try again.');
+      notify.error(error as string);
     }
   };
 

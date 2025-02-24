@@ -1,7 +1,6 @@
 'use client';
 
 import { useAuth } from '@/context/AuthContext';
-import { useState } from 'react';
 import { ClipLoader } from 'react-spinners';
 import { DUMMY_PROFILE_STATS, DUMMY_RIDES, DUMMY_RIDE_POOLS } from '@/lib/data/dummy';
 import Link from 'next/link';
@@ -14,7 +13,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Star } from 'lucide-react';
 
 export default function DashboardPage() {
-  const { user, isLoading } = useAuth();
+  const {isLoading } = useAuth();
   const stats: RideStats = DUMMY_PROFILE_STATS;
   const recentRides: RideDetails[] = DUMMY_RIDES.slice(0, 3);
 

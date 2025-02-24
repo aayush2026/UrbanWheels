@@ -16,7 +16,6 @@ function PaymentSuccessContent() {
   const searchParams = useSearchParams();
   const stripe = useStripe();
   const { addPaymentToHistory, getPaymentHistory } = usePayment();
-  const router = useRouter();
   const processedRef = useRef(false);
 
   useEffect(() => {

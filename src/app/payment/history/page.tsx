@@ -8,7 +8,7 @@ import PaymentHistoryList from '@/components/payment/PaymentHistoryList';
 import { PaymentHistoryRecord } from '@/types/payment';
 
 export default function PaymentHistoryPage() {
-  const { user, isLoading: authLoading } = useAuth();
+  const { isLoading: authLoading } = useAuth();
   const { getPaymentHistory } = usePayment();
   const [payments, setPayments] = useState<PaymentHistoryRecord[]>([]);
 

@@ -25,7 +25,7 @@ const Chat: React.FC<ChatProps> = ({ poolId, userId, currentUsername }) => {
   useEffect(() => {
     const storedMessages = localStorage.getItem('chatMessages');
     if (storedMessages) {
-      const parsedMessages = JSON.parse(storedMessages).map((msg: any) => ({
+      const parsedMessages = JSON.parse(storedMessages).map((msg: { text: string; poolId: string; timestamp: string; userId: string }) => ({
         ...msg,
         timestamp: new Date(msg.timestamp),
       }));
