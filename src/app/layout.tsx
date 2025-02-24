@@ -7,6 +7,7 @@ import { RideProvider } from '@/context/RideContext';
 import SidebarLayout from '@/components/layout/Sidebar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ThemeProvider } from '@/context/ThemeContext';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,13 +26,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-white text-gray-900 dark:bg-gray-900 dark:text-white`}>
         <AuthProvider>
           <RideProvider>
             <PaymentProvider>
-              <SidebarLayout>
-                {children}
-              </SidebarLayout>
+              <ThemeProvider>
+                <SidebarLayout>
+                  {children}
+                </SidebarLayout>
+              </ThemeProvider>
             </PaymentProvider>
           </RideProvider>
         </AuthProvider>

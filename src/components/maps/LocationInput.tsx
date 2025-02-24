@@ -43,7 +43,7 @@ export default function LocationInput({
 
   return (
     <div>
-      <label htmlFor={id} className="block text-md font-medium text-gray-700">
+      <label htmlFor={id} className="block text-md font-medium text-gray-700 dark:text-white">
         {label}
       </label>
       <input
@@ -54,12 +54,9 @@ export default function LocationInput({
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={onKeyDown}
         placeholder={placeholder}
-        className={`mt-1 block w-full p-2 rounded-sm shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
-          error 
-            ? 'border-red-300 text-red-900 placeholder-red-300'
-            : 'border-gray-300'
-        }`}
+        className={`mt-1 block w-full p-2 rounded-sm shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm 
+          ${error ? 'border-red-300 text-red-900 placeholder-red-300 dark:border-red-400 dark:text-red-400 dark:placeholder-red-400' : 'border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400'}`}
       />
     </div>
   );
-} 
+}

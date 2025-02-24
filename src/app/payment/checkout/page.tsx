@@ -58,9 +58,9 @@ export default function CheckoutPage() {
 
   if (error) {
     return (
-      <div className="max-w-3xl mx-auto py-8 px-4">
+      <div className="max-w-3xl mx-auto py-8 px-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
         <ErrorMessage message={error} />
-        <p className="mt-4 text-center text-gray-600">Redirecting back to booking...</p>
+        <p className="mt-4 text-center text-gray-600 dark:text-gray-300">Redirecting back to booking...</p>
       </div>
     );
   }
@@ -70,8 +70,8 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto py-8 px-4">
-      <h1 className="text-2xl font-semibold mb-6">Complete Your Payment</h1>
+    <div className="max-w-3xl mx-auto py-8 px-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+      <h1 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Complete Your Payment</h1>
       <Elements stripe={stripePromise} options={{ 
         clientSecret,
         appearance: {
@@ -82,4 +82,4 @@ export default function CheckoutPage() {
       </Elements>
     </div>
   );
-} 
+}

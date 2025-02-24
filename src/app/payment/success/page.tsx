@@ -63,9 +63,9 @@ function PaymentSuccessContent() {
             paymentMethod: 'Card'
           };
 
-          console.log('Before adding new payment:', getPaymentHistory()); // Log existing payments
-          addPaymentToHistory(paymentRecord); // Add new payment
-          console.log('After adding new payment:', getPaymentHistory()); // Log updated payments
+          console.log('Before adding new payment:', getPaymentHistory());
+          addPaymentToHistory(paymentRecord);
+          console.log('After adding new payment:', getPaymentHistory());
           setPaymentIntent(paymentIntent as unknown as PaymentData);
           setStatus('success');
           processedRef.current = true;
@@ -91,15 +91,17 @@ function PaymentSuccessContent() {
     };
   }, [stripe, searchParams, addPaymentToHistory, getPaymentHistory]);
 
-  if (status === 'loading') return <LoadingSpinner />;
-  if (status === 'failed') return <FailureView />;
-  return <SuccessView amount={(paymentIntent?.amount || 0) / 100} />;
+  if (status === 'loading') return <LoadingSpinner  />;
+  if (status === 'failed') return <FailureView  />;
+  return <SuccessView amount={(paymentIntent?.amount || 0) / 100}/>;
 }
 
 export default function PaymentSuccessPage() {
   return (
     <StripeProvider>
-      <PaymentSuccessContent />
+      <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen flex items-center justify-center">
+        <PaymentSuccessContent />
+      </div>
     </StripeProvider>
   );
-} 
+}

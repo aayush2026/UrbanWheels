@@ -25,6 +25,8 @@ body {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 * {
@@ -45,8 +47,8 @@ a {
 } */
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
+  --background: #ffffff; /* Light mode background */
+  --foreground: #171717; /* Light mode text color */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
@@ -81,8 +83,8 @@ a {
 }
 
 .dark {
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.985 0 0);
+  --background: oklch(0.141 0.005 285.823); /* Dark mode background */
+  --foreground: oklch(0.985 0 0); /* Dark mode text color */
   --card: oklch(0.141 0.005 285.823);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.141 0.005 285.823);
@@ -162,3 +164,5 @@ a {
     @apply bg-background text-foreground;
   }
 }
+
+/* Add any additional styles for dark mode here */

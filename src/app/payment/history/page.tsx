@@ -24,13 +24,13 @@ export default function PaymentHistoryPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
       <div className="px-4 py-6 sm:px-0">
-        <h1 className="text-2xl font-semibold text-gray-900 mb-6">
+        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
           Payment History
         </h1>
         <PaymentHistoryList payments={payments} />
       </div>
     </div>
   );
-} 
+}
