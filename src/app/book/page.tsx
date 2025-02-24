@@ -9,7 +9,6 @@ import Map from '@/components/maps/Map';
 import LocationInput from '@/components/maps/LocationInput';
 import { RIDE_TYPES } from '@/lib/constants/config';
 import { DUMMY_RIDE_POOLS } from '@/lib/data/dummy';
-import RidePoolCard from '@/components/ride-sharing/RidePoolCard';
 import { RidePool } from '@/types/ride-sharing';
 import { useRide } from '@/context/RideContext';
 import { notify } from '@/lib/utils/notifications';
@@ -23,7 +22,7 @@ interface FormErrors {
 }
 
 export default function BookRidePage() {
-  const { user, isLoading } = useAuth();
+  const { isLoading } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
   const bookingType = searchParams.get('type') || 'solo';
@@ -122,7 +121,7 @@ export default function BookRidePage() {
       notify.success('Ride booked successfully!');
       router.push('/dashboard');
     } catch (error) {
-      notify.error('Failed to book ride. Please try again.');
+      notify.error(error as string);
     } finally {
       setSubmitting(false);
     }

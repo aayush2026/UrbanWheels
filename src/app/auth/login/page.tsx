@@ -14,7 +14,7 @@ export default function LoginPage() {
     try {
       await login(username, password);
     } catch (err) {
-      setError('Invalid credentials');
+      setError(err as string);
     }
   };
 
