@@ -9,7 +9,7 @@ interface RideFeedbackProps {
   onSubmit: (feedback: { rating: number; comment: string }) => void;
 }
 
-export default function RideFeedback({ ride, onSubmit }: RideFeedbackProps) {
+export default function RideFeedback({ onSubmit }: RideFeedbackProps) {
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState('');
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useStripe } from '@stripe/react-stripe-js';
 import { PaymentData, PaymentStatus } from '@/types/payment';
 import { usePayment } from '@/context/PaymentContext';

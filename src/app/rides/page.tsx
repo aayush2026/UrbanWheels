@@ -10,7 +10,7 @@ import { getInitials } from '@/lib/data/dummy';
 const ITEMS_PER_PAGE = 5;
 
 export default function RidesPage() {
-  const { user, isLoading } = useAuth();
+  const { isLoading } = useAuth();
   const [rides, setRides] = useState<RideHistory[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
