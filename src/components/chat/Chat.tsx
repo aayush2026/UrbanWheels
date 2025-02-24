@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 
+
 interface ChatProps {
   poolId: string;
   userId: string;
   currentUsername: string;
 }
 
-const socket = io('http://localhost:3001'); 
+const socket = io(process.env.NEXT_PUBLIC_CHAT_URL);
 
 interface User {
   username: string;
@@ -32,21 +33,32 @@ const Chat: React.FC<ChatProps> = ({ poolId, userId, currentUsername }) => {
     }
 
     socket.on('receiveMessage', (message) => {
+      console.log('Received message:', message);
       setMessages((prevMessages) => {
         const updatedMessages = [...prevMessages, { ...message, timestamp: new Date(message.timestamp) }];
+        console.log('Storing messages in local storage:', updatedMessages);
         localStorage.setItem('chatMessages', JSON.stringify(updatedMessages));
+        console.log('Current local storage:', localStorage.getItem('chatMessages'));
         return updatedMessages;
       });
     });
 
+    console.log('Connecting to socket...');
+    socket.on('connect', () => {
+      console.log('Connected to socket:', socket.id);
+    });
+
     return () => {
       socket.off('receiveMessage');
+      socket.off('connect');
     };
   }, []);
 
   const sendMessage = () => {
     if (input) {
       const message = { text: input, poolId, timestamp: new Date(), userId };
+      console.log('Sending message:', message);
+      console.log('User ID:', userId);
       socket.emit('sendMessage', message);
       setInput('');
     }

@@ -57,6 +57,8 @@ export default function RidePoolDetailsPage() {
     return <ClipLoader size={50} color="#4F46E5" />;
   }
 
+  console.log('Chat props:', { poolId: Array.isArray(resolvedParams.poolId) ? resolvedParams.poolId[0] : resolvedParams.poolId || '', userId, currentUsername: user ? user.username : 'Unknown User' });
+
   return (
     <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
       <div className="px-4 sm:px-0">
