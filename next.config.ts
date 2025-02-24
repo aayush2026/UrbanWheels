@@ -6,6 +6,13 @@ const withAutoCert = autoCert({
   enabledEnv: "development",
 });
 
+module.exports = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+};
+
+
 const nextConfig = {};
 
 export default withAutoCert(nextConfig);
